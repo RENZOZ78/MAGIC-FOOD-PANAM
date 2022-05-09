@@ -305,3 +305,234 @@ display: none;
     }
   }
 
+.login-form-container{
+position: fixed;
+top:8.5rem; left:0; right:0;
+z-index: 1000;
+height: calc(100vh - 8.5rem);
+background: $white;
+padding:0 2rem;
+display: none;
+
+&.active{
+    display: block;
+}
+
+form{
+    margin:2rem auto;
+    max-width: 40rem;
+    box-shadow: $box-shadow;
+    border:$border;
+    padding: 2rem;
+    border-radius: .5rem;
+    animation: fadeUp .4s linear;
+
+    h3{
+    padding-bottom: 1rem;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: $black;
+    }
+
+    .box{
+    margin:.7rem 0;
+    border-radius: .5rem;
+    background: $light-bg;
+    padding:1rem 1.2rem;
+    font-size: 1.6rem;
+    color:$black;
+    text-transform: none;
+    width: 100%;
+    }
+
+    .remember{
+    padding:1rem 0;
+    display: flex;
+    align-items: center;
+    gap:.5rem;
+
+    label{
+        font-size: 1.5rem;
+        cursor: pointer;
+        color:$light-color;
+    }
+    }
+
+    .btn{
+    margin:1rem 0;
+    width: 100%;
+    text-align: center;
+    }
+
+    p{
+    padding-top: 1rem;
+    font-size: 1.5rem;
+    color: $light-color;
+
+    a{
+        color:$green;
+
+        &:hover{
+        color:$black;
+        text-decoration: underline;
+        }
+    }
+    }
+}
+}
+
+// HOME SECTION 
+.home{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+    gap:2rem;
+    position: relative;
+    overflow: hidden;
+  
+    .content{
+      flex:1 1 41rem;
+  
+      span{
+        font-size: 2rem;
+        color:$green;
+      }
+  
+      h3{
+        font-size: 4rem;
+        color:$black;
+        padding-top: 1rem;
+      }
+  
+      p{
+        font-size: 1.4rem;
+        color:$light-color;
+        line-height: 2;
+        padding:1rem 0;
+      }
+    }
+  
+    .image{
+      flex:1 1 41rem;
+      margin:2rem 0;
+      pointer-events: none;
+  
+      .home-img{
+        width: 100%;
+        margin-top: 5rem;
+      }
+    }
+  
+    .home-parallax-img{
+      position: absolute;
+      top:-10rem; right: -10rem;
+      width: 80vw;
+    }
+  }
+
+
+// MEDIA QUERY------------
+@media (max-width:991px){
+    html{
+      font-size: 55%;
+    }
+  
+    .header{
+      padding:2rem;
+    }
+  
+    section{
+      padding:2rem;
+    }
+  
+  }
+
+  @media (max-width:450px){
+    html{
+      font-size: 50%;
+    }
+  
+    .shopping-cart-container .cart-total{
+  
+      .box{
+        text-align: center;
+  
+        .btn{
+          width: 100%;
+        }
+      }
+    }
+  
+    .home .content{
+      h3{
+        font-size: 3rem;
+      }
+      p{
+        font-size: 1.5rem;
+      }
+    }
+  
+  }
+
+  @media (max-width:768px){
+    #menu-btn{
+      display: inline-block;
+    }
+  
+    .header .navbar{
+      position: absolute;
+      top:99%; left:0; right: 0;
+      background: $white;
+      border-top: $border;
+      border-bottom: $border;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  
+      &.active{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+  
+      a{
+        font-size: 2rem;
+        margin:2rem;
+        display: block;
+      }
+    }
+  
+    .home .home-parallax-img{
+        top:0; right:0;
+        width: 130%;
+      }
+  
+      .order form .flex .inputBox{
+        width: 100%;
+      }
+  
+  }
+
+  @media (max-width:450px){
+
+    html{
+      font-size: 50%;
+    }
+  
+    .shopping-cart-container .cart-total{
+  
+      .box{
+        text-align: center;
+  
+        .btn{
+          width: 100%;
+        }
+      }
+    }
+  
+    .home .content{
+      h3{
+        font-size: 3rem;
+      }
+      p{
+        font-size: 1.5rem;
+      }
+    }
+  
+  }
