@@ -681,19 +681,6 @@ section {
 
   section {
     padding: 2rem; } }
-@media (max-width: 450px) {
-  html {
-    font-size: 50%; }
-
-  .shopping-cart-container .cart-total .box {
-    text-align: center; }
-    .shopping-cart-container .cart-total .box .btn {
-      width: 100%; }
-
-  .home .content h3 {
-    font-size: 3rem; }
-  .home .content p {
-    font-size: 1.5rem; } }
 @media (max-width: 768px) {
   #menu-btn {
     display: inline-block; }

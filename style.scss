@@ -60,7 +60,7 @@ html{
     padding:2rem 9%;
   }
 
-  
+
   .heading{
     text-align: center;
     padding-bottom: 2rem;
@@ -888,7 +888,7 @@ padding-bottom: 5rem;
     }
   }
 
-//   footer
+//   footer------------------
   .footer{
     background:$light-bg;
   
@@ -1025,32 +1025,6 @@ padding-bottom: 5rem;
   
   }
 
-  @media (max-width:450px){
-    html{
-      font-size: 50%;
-    }
-  
-    .shopping-cart-container .cart-total{
-  
-      .box{
-        text-align: center;
-  
-        .btn{
-          width: 100%;
-        }
-      }
-    }
-  
-    .home .content{
-      h3{
-        font-size: 3rem;
-      }
-      p{
-        font-size: 1.5rem;
-      }
-    }
-  
-  }
 
   @media (max-width:768px){
     #menu-btn{
