@@ -4,13 +4,11 @@
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   outline: none;
   border: none;
   text-decoration: none;
   text-transform: capitalize;
-  -webkit-transition: .2s linear;
   transition: .2s linear; }
 
 html {
