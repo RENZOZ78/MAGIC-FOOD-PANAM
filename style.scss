@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:ital,wght@0,100;0,200;0,300;1,200;1,400;1,600&family=Yuji+Mai&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 
 * {
     font-family: 'Poppins', sans-serif;
@@ -57,6 +58,21 @@ html{
 //   SECTION-----------------
   section{
     padding:2rem 9%;
+  }
+
+  
+  .heading{
+    text-align: center;
+    padding-bottom: 2rem;
+  
+    span{
+      @include font(3rem);
+    }
+  
+    h3{
+      font-size: 3rem;
+      color:$black;
+    }
   }
 
   //BTN
@@ -671,7 +687,7 @@ padding-bottom: 5rem;
   }
   
 
-// menu
+// menu---------------------------------
 .menu .box-container{
     @include grid(30rem);
   
@@ -712,6 +728,284 @@ padding-bottom: 5rem;
     }
   }
 
+//   ODER--------------------
+.order{
+    .icons-container{
+      @include grid(30rem);
+      margin-bottom: 2rem;
+  
+      .icons{
+        border-radius: .5rem;
+        padding:2rem;
+        text-align: center;
+        background: $light-bg;
+  
+        img{
+          height: 10rem;
+        }
+  
+        h3{
+          font-size: 2rem;
+          color:$black;
+          margin-top: .5rem;
+        }
+      }
+    }
+  
+    form{
+      background:$light-bg;
+      padding:2rem;
+      border-radius: .5rem;
+  
+      .flex{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+  
+        .inputBox{
+          width:49%;
+          padding:.7rem 0;
+        }
+  
+        span{
+          font-size: 1.7rem;
+          color:$light-color;
+        }
+  
+        input, textarea{
+          width:100%;
+          margin-top: .5rem;
+          padding:1rem 1.2rem;
+          width:100%;
+          border-radius: .5rem;
+          font-size: 1.6rem;
+          text-transform: none;
+          color:$black;
+        }
+  
+        textarea{
+          height:20rem;
+          resize: none;
+        }
+  
+        .map{
+          height:100%;
+          width:100%;
+          border-radius: .5rem;
+        }
+      }
+    }
+  }
+
+//   BLOG-------------------------------
+.blogs{
+
+    .box-container{
+      @include grid(30rem);
+  
+      .box{
+        border-radius: .5rem;
+        overflow: hidden;
+  
+        &:hover{
+          .image{
+  
+            h3{
+              left:1.5rem;
+            }
+  
+            img{
+              transform: scale(1.1);
+            }
+          }
+        }
+  
+        .image{
+          position: relative;
+          height: 25rem;
+          overflow: hidden;
+          width: 100%;
+  
+          h3{
+            position: absolute;
+            z-index: 10;
+            top:1rem; left:-100%;
+            border-radius: .5rem;
+            padding:.5rem 1rem;
+            background: $white;
+            color:$black;
+            font-size: 1.5rem;
+  
+            i{
+              padding-right: .5rem;
+              color:$green;
+            }
+          }
+  
+          img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+  
+        .content{
+          padding:2rem 1.5rem;
+          background: $light-bg;
+  
+          .tags{
+            padding-bottom: 1rem;
+  
+            a{
+              font-size: 1.5rem;
+              color:$light-color;
+              padding-right: .5rem;
+  
+              &:hover{
+                color:$green;
+              }
+              
+              i{
+                color:$green;
+                padding-right: .5rem;
+              }
+            }
+          }
+  
+          h3{
+            font-size: 2rem;
+            color:$black;
+          }
+  
+          p{
+            font-size: 1.4rem;
+            color:$light-color;
+            padding:1rem 0;
+            line-height: 2;
+          }
+        }
+      }
+    }
+  }
+
+//   footer
+  .footer{
+    background:$light-bg;
+  
+    .newsletter{
+      text-align: center;
+      margin-bottom: 2rem;
+  
+      h3{
+        font-size: 2.5rem;
+        color:$black;
+        padding-bottom: 1rem;
+      }
+      
+      form{
+        max-width:70rem;
+        margin:1rem auto;
+        max-width: 70rem;
+        display: flex;
+        border-radius: .5rem;
+        overflow: hidden;
+  
+        input[type="email"]{
+          height: 100%;
+          width:100%;
+          padding:1rem 1.2rem;
+          font-size: 1.6rem;
+          color:$black;
+          text-transform: none;
+        }
+  
+        input[type="submit"]{
+          padding:0 2rem;
+          font-size: 1.6rem;
+          color:$white;
+          background:$green;
+          cursor: pointer;
+  
+          &:hover{
+            background: $black;
+          }
+        }
+      }
+    }
+  
+    .box-container{
+      @include grid(25rem);
+  
+      .box{
+  
+        h3{
+          font-size: 2.2rem;
+          color:$black;
+          padding:1rem 0;
+        }
+  
+        p{
+          font-size: 1.4rem;
+          color:$light-color;
+          padding:1rem 0;
+        }
+  
+        a{
+          display: block;
+          font-size: 1.4rem;
+          color:$light-color;
+          padding:1rem 0;
+  
+          &:hover{
+            color:$green;
+  
+            i{
+              padding-right: 2rem;
+            }
+          }
+  
+          i{
+            padding-right: .5rem;
+            color:$green;
+          }
+        }
+      }
+    }
+  
+    .bottom{
+      padding-top: 1rem;
+      text-align: center;
+  
+      .share{
+        margin:1.5rem 0;
+  
+        a{
+          height:4.5rem;
+          width:4.5rem;
+          line-height:4.5rem;
+          font-size:2rem;
+          border-radius: .5rem;
+          margin:0 .3rem;
+          color:$white;
+          background: $green;
+  
+          &:hover{
+            background: $black;
+          }
+        }
+      }
+  
+      .credit{
+        font-size: 2rem;
+        color:$light-color;
+        padding:1rem;
+  
+        span{
+          color:$green;
+        }
+      }
+    }
+  }
 
 
 
