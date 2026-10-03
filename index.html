@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic-Food Panam</title>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" >
+
+    <!-- custom css style -->
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+
+    <!-- SECTION HEADER    -->
+
+<header class="header">
+
+    <a href="#" class="logo"> <i class="fas fa-utensils"></i> MAGIC FOOD PANAM </a>
+    
+    <nav class="navbar">
+        <a href="#home">accueil</a>
+        <a href="#about">à propos</a>
+        <a href="#popular">populaire</a>
+        <a href="#menu">menu</a>
+        <a href="#order">commande</a>
+        <a href="#blogs">blogs</a>
+    </nav>
+
+    <div class="icons">
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <div id="search-btn" class="fas fa-search"></div>
+        <div id="cart-btn" class="fas fa-shopping-cart"></div>
+        <div id="login-btn" class="fas fa-user"></div>
+    </div>
+    
+</header>
+<!-- SECTION HEADER  -->
+
+<!-- SEARCH FORM -->
+<section class="search-form-container">
+
+    <form action="">
+        <input type="search" name="" placeholder="search here..." id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+    </form>
+
+</section>
+<!-- FIN SEARCH FORM -->
+
+
+<!-- SECTION SHOPPING CART  -->
+
+<section class="shopping-cart-container">
+
+    <div class="products-container">
+ 
+        <h3 class="title">vos produits</h3>
+
+        <div class="box-container">
+
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="image/menu-1.png" alt="">
+                <div class="content">
+                    <h3>plat délicieux</h3>
+                    <span> quantité : </span>
+                    <input type="number" name="" value="1" id="">
+                    <br>
+                    <span> price : </span>
+                    <span class="price"> €40.00 </span>
+                </div>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="image/menu-2.png" alt="">
+                <div class="content">
+                    <h3>plat délicieux</h3>
+                    <span> quantité : </span>
+                    <input type="number" name="" value="1" id="">
+                    <br>
+                    <span> price : </span>
+                    <span class="price"> €40.00 </span>
+                </div>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="image/menu-3.png" alt="">
+                <div class="content">
+                    <h3>plat délicieux</h3>
+                    <span> quantité : </span>
+                    <input type="number" name="" value="1" id="">
+                    <br>
+                    <span> price : </span>
+                    <span class="price"> €40.00 </span>
+                </div>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="image/menu-4.png" alt="">
+                <div class="content">
+                    <h3>plat délicieux</h3>
+                    <span> quantité : </span>
+                    <input type="number" name="" value="1" id="">
+                    <br>
+                    <span> price : </span>
+                    <span class="price"> €40.00 </span>
+                </div>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-times"></i>
+                <img src="image/menu-5.png" alt="">
+                <div class="content">
+                    <h3>plat délicieux</h3>
+                    <span> quantité : </span>
+                    <input type="number" name="" value="1" id="">
+                    <br>
+                    <span> price : </span>
+                    <span class="price"> €40.00 </span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="cart-total">
+
+        <h3 class="title"> total panier </h3>
+
+        <div class="box">
+
+            <h3 class="subtotal"> sous-total : <span>€200</span> </h3>
+            <h3 class="total"> total : <span>€200</span> </h3>
+
+            <a href="#" class="btn">procèder à la commande</a>
+
+        </div>
+
+    </div>
+
+</section>    
+    <!-- SECTION SHOPPING CART -->
+
+<!-- LOGIN FORM  -->
+<div class="login-form-container">
+
+    <form action="">
+        <h3>formulaire de connection</h3>
+        <input type="email" name="" placeholder="entrez votre email" id="" class="box">
+        <input type="password" name="" placeholder="entrez votre mot de passe" id="" class="box">
+        <div class="remember">
+            <input type="checkbox" name="" id="remember-me">
+            <label for="remember-me">se souvenir</label>
+        </div>
+        <input type="submit" value="login now" class="btn">
+        <p>vous avez oublié votre mot de passe? <a href="#">cliquer ici</a></p>
+        <p>vous n'avez pas de compte? <a href="#">créer un compte</a></p>
+    </form>
+
+</div>
+<!-- FIN LOGIN FORM -->
+
+<!-- HOME SECTION  -->
+<section class="home" id="home">
+
+    <div class="content">
+        <span>bienvenue aux gourmets</span>
+        <h3>différentes épices pour tout les goûts 😋</h3>
+        <p>Laissez-vous tenter par nos nouveaux plats originaux</p>
+        <a href="#" class="btn">commander</a>
+    </div>
+
+    <div class="image">
+        <img src="image/home-img.png" alt="" class="home-img">
+        <img src="image/home-parallax-img.png" alt="" class="home-parallax-img">
+    </div>
+
+</section>
+<!-- HOME SECTION-->
+
+<!-- SECITON CATEGORY  -->
+<section class="category">
+
+    <a href="#" class="box">
+        <img src="image/cat-1.png" alt="">
+        <h3>combo</h3>
+    </a>
+
+    <a href="#" class="box">
+        <img src="image/cat-2.png" alt="">
+        <h3>pizza</h3>
+    </a>
+
+    <a href="#" class="box">
+        <img src="image/cat-3.png" alt="">
+        <h3>burger</h3>
+    </a>
+
+    <a href="#" class="box">
+        <img src="image/cat-4.png" alt="">
+        <h3>poulet</h3>
+    </a>
+
+    <a href="#" class="box">
+        <img src="image/cat-5.png" alt="">
+        <h3>dîner</h3>
+    </a>
+
+    <a href="#" class="box">
+        <img src="image/cat-6.png" alt="">
+        <h3>café</h3>
+    </a>
+
+</section>
+<!-- FIN SECTION CATEGORY -->
+
+<!-- SECTION ABOUT  -->
+<section class="about" id="about">
+
+    <div class="image">
+        <img src="image/about-img.png" alt="">
+    </div>
+
+    <div class="content">
+        <span>pourquoi nous choisir?</span>
+        <h3 class="title">qu'est ce qui fait que nos plats soient si délicieux!</h3>
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ut explicabo, numquam iusto est a ipsum assumenda tempore esse corporis?</p> -->
+        <a href="#" class="btn">en savoir plus</a>
+        <div class="icons-container">
+            <div class="icons">
+                <img src="image/serv-1.png" alt="">
+                <h3>livraison rapide</h3>
+            </div>  
+            <div class="icons">
+                <img src="image/serv-2.png" alt="">
+                <h3>ingrédients frais</h3>
+            </div>   
+            <div class="icons">
+                <img src="image/serv-3.png" alt="">
+                <h3>excellente qualité</h3>
+            </div>  
+            <div class="icons">
+                <img src="image/serv-4.png" alt="">
+                <h3>24/7 contact</h3>
+            </div>           
+        </div>
+    </div>
+
+</section>
+<!-- FIN SECTINO ABOUT -->
+
+<!-- POPULAR SECTION  -->
+<section class="popular" id="popular">
+
+    <div class="heading">
+        <span>nourriture populaire</span>
+        <h3>nos plats spéciaux</h3>
+    </div>
+
+    <div class="box-container">
+
+        <div class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <div class="image">
+                <img src="image/food-1.png" alt="">
+            </div>
+            <div class="content">
+                <h3>plat délicieux</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span> (50) </span>
+                </div>
+                <div class="price">€40.00 <span>€50.00</span></div>
+                <a href="#" class="btn">ajouter au panier</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <div class="image">
+                <img src="image/food-2.png" alt="">
+            </div>
+            <div class="content">
+                <h3>plat délicieux</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span> (50) </span>
+                </div>
+                <div class="price">€40.00 <span>€50.00</span></div>
+                <a href="#" class="btn">ajouter au panier</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <div class="image">
+                <img src="image/food-3.png" alt="">
+            </div>
+            <div class="content">
+                <h3>plat délicieux</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span> (50) </span>
+                </div>
+                <div class="price">€40.00 <span>€50.00</span></div>
+                <a href="#" class="btn">ajouter au panier</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <div class="image">
+                <img src="image/food-4.png" alt="">
+            </div>
+            <div class="content">
+                <h3>plat délicieux</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span> (50) </span>
+                </div>
+                <div class="price">€40.00 <span>€50.00</span></div>
+                <a href="#" class="btn">ajouter au panier</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <div class="image">
+                <img src="image/food-5.png" alt="">
+            </div>
+            <div class="content">
+                <h3>plat délicieux</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span> (50) </span>
+                </div>
+                <div class="price">€40.00 <span>€50.00</span></div>
+                <a href="#" class="btn">ajouter au panier</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <div class="image">
+                <img src="image/food-6.png" alt="">
+            </div>
+            <div class="content">
+                <h3>plat délicieux</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span> (50) </span>
+                </div>
+                <div class="price">€40.00 <span>€50.00</span></div>
+                <a href="#" class="btn">ajouter au panier</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <div class="image">
+                <img src="image/food-7.png" alt="">
+            </div>
+            <div class="content">
+                <h3>plat délicieux</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span> (50) </span>
+                </div>
+                <div class="price">€40.00 <span>€50.00</span></div>
+                <a href="#" class="btn">ajouter au panier</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <a href="#" class="fas fa-heart"></a>
+            <div class="image">
+                <img src="image/food-8.png" alt="">
+            </div>
+            <div class="content">
+                <h3>plat délicieux</h3>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span> (50) </span>
+                </div>
+                <div class="price">€40.00 <span>€50.00</span></div>
+                <a href="#" class="btn">ajouter au panier</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- FIN POPULAR SECTION -->
+
+<!-- SECITON BANNER  -->
+<section class="banner">
+
+    <div class="row-banner">
+        <div class="content">
+            <span>double cheese</span>
+            <h3>burger</h3>
+            <p>Coca + Frites</p>
+            <a href="#" class="btn">commander</a>
+        </div>
+    </div>
+
+    <div class="grid-banner">
+        <div class="grid">
+            <img src="image/banner-1.png" alt="">
+            <div class="content">
+                <span>offre spéciale</span>
+                <h3>jusqu’à 50% de réduction</h3>
+                <a href="#" class="btn">commander</a>
+            </div>
+        </div>
+        <div class="grid">
+            <img src="image/banner-2.png" alt="">
+            <div class="content center">
+                <span>offre spéciale</span>
+                <h3>jusqu’à 25% de réduction</h3>
+                <a href="#" class="btn">commander</a>
+            </div>
+        </div>
+        <div class="grid">        
+            <img src="image/banner-3.png" alt="">
+            <div class="content">
+                <span>offre limitée</span>
+                <h3>100% cashback</h3>
+                <a href="#" class="btn">commander</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- FIN SECITON BANNER -->
+
+<!-- SECITON MENU  -->
+<section class="menu" id="menu">
+
+    <div class="heading">
+        <span>nos menu</span>
+        <h3>nos meilleurs plats</h3>
+    </div>
+
+    <div class="box-container">
+
+        <a href="#" class="box">
+            <img src="image/menu-1.png" alt="">
+            <div class="content">
+                <h3>plat déclicieux</h3>
+                <div class="price">€40.00</div>
+            </div>
+        </a>
+
+        <a href="#" class="box">
+            <img src="image/menu-2.png" alt="">
+            <div class="content">
+                <h3>plat déclicieux</h3>
+                <div class="price">€40.00</div>
+            </div>
+        </a>
+
+        <a href="#" class="box">
+            <img src="image/menu-3.png" alt="">
+            <div class="content">
+                <h3>plat déclicieux</h3>
+                <div class="price">€40.00</div>
+            </div>
+        </a>
+
+        <a href="#" class="box">
+            <img src="image/menu-4.png" alt="">
+            <div class="content">
+                <h3>plat déclicieux</h3>
+                <div class="price">€40.00</div>
+            </div>
+        </a>
+
+        <a href="#" class="box">
+            <img src="image/menu-5.png" alt="">
+            <div class="content">
+                <h3>plat déclicieux</h3>
+                <div class="price">€40.00</div>
+            </div>
+        </a>
+
+        <a href="#" class="box">
+            <img src="image/menu-6.png" alt="">
+            <div class="content">
+                <h3>plat déclicieux</h3>
+                <div class="price">€40.00</div>
+            </div>
+        </a>
+
+    </div>
+
+</section>
+<!-- FIN SECTION MENU -->
+
+
+<!-- SECITON ORDER  -->
+
+<section class="order" id="order">
+
+    <div class="heading">
+        <span>commander</span>
+        <h3>livraison éclaire</h3>
+    </div>
+
+    <div class="icons-container">
+
+        <div class="icons">
+            <img src="image/icon-1.png" alt="">
+            <h3>7:00h à 22h30h</h3>
+        </div>
+
+        <div class="icons">
+            <img src="image/icon-2.png" alt="">
+            <h3>01-36-45-96-85</h3>
+        </div>
+
+        <div class="icons">
+            <img src="image/icon-3.png" alt="">
+            <h3>Paris, France - 75015</h3>
+        </div>
+
+    </div>
+
+    <form action="">
+
+        <div class="flex">
+            <div class="inputBox">
+                <span>votre nom</span>
+                <input type="text" placeholder="nom du client" name="" id="">
+            </div>
+            <div class="inputBox">
+                <span>votre numéro</span>
+                <input type="number" placeholder="numéro du client" name="" id="">
+            </div>
+        </div>
+
+        <div class="flex">
+            <div class="inputBox">
+                <span>votre commande</span>
+                <input type="text" placeholder="plat que vous désirer" name="" id="">
+            </div>
+            <div class="inputBox">
+                <span>montant</span>
+                <input type="number" placeholder="numéro ou commande" name="" id="">
+            </div>
+        </div>
+
+        <div class="flex">
+            <div class="inputBox">
+                <span>vos demandes spéciales</span>
+                <input type="text" placeholder="votre message" name="" id="">
+            </div>
+            <div class="inputBox">
+                <span>heure de récupération</span>
+                <input type="datetime-local">
+            </div>
+        </div>
+
+        <div class="flex">
+            <div class="inputBox">
+                <textarea placeholder="votre adresse" id="" cols="30" rows="10"></textarea>
+            </div>
+            <div class="inputBox">
+                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42013.846884514074!2d2.258697136571288!3d48.84170548671292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67014196e60f5%3A0x50b82c368941b30!2sParis%2015e%20Arrondissement%2C%2075015%20Paris!5e0!3m2!1sfr!2sfr!4v1652058725257!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" ></iframe>
+            </div>
+        </div>
+
+        <input type="submit" value="commander" class="btn">
+
+    </form>
+
+</section>
+<!-- FIN SECTION ORDER -->
+
+<!-- SECTINO BLOG  -->
+<section class="blogs" id="blogs">
+
+    <div class="heading">
+        <span>notre blog</span>
+        <h3>l'histoire du jour</h3>
+    </div>
+
+    <div class="box-container">
+
+        <div class="box">
+            <div class="image">
+                <h3> <i class="fas fa-calendar"></i> 10 mai 2022 </h3>
+                <img src="image/blog-1.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="tags">
+                    <a href="#"> <i class="fas fa-tag"></i> plat / </a>
+                    <a href="#"> <i class="fas fa-tag"></i> burger / </a>
+                    <a href="#"> <i class="fas fa-tag"></i> pizza  </a>
+                </div>
+                <h3>Les secrets de nos plats...</h3>
+                <p>Découvrez des recettes de plats exceptionnels...</p>
+                <a href="#" class="btn">En savoir plus</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="image">
+                <h3> <i class="fas fa-calendar"></i> 10 mai 2022 </h3>
+                <img src="image/blog-2.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="tags">
+                    <a href="#"> <i class="fas fa-tag"></i> plat / </a>
+                    <a href="#"> <i class="fas fa-tag"></i> burger / </a>
+                    <a href="#"> <i class="fas fa-tag"></i> pizza  </a>
+                </div>
+                <h3>Les secrets de nos plats...</h3>
+                <p>Découvrez des recettes de plats exceptionnels...</p>
+                <a href="#" class="btn">En savoir plus</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="image">
+                <h3> <i class="fas fa-calendar"></i> 10 mai 2022 </h3>
+                <img src="image/blog-3.jpg" alt="">
+            </div>
+            <div class="content">
+                <div class="tags">
+                    <a href="#"> <i class="fas fa-tag"></i> plat / </a>
+                    <a href="#"> <i class="fas fa-tag"></i> burger / </a>
+                    <a href="#"> <i class="fas fa-tag"></i> pizza  </a>
+                </div>
+                <h3>Les secrets de nos plats...</h3>
+                <p>read more</p>
+                <a href="#" class="btn">En savoir plus</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- FIN SECTION BLOG -->
+
+<!-- DSECTION FOOTER  -->
+<section class="footer">
+
+    <div class="newsletter">
+        <h3>newsletter</h3>
+        <form action="">
+            <input type="email" name="" placeholder="entrez votre mail" id="">
+            <input type="submit" value="subscribe">
+        </form>
+    </div>
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>nos menus</h3>
+            <a href="#"><i class="fas fa-arrow-right"></i> pizza</a>
+            <a href="#"><i class="fas fa-arrow-right"></i> burger</a>
+            <a href="#"><i class="fas fa-arrow-right"></i> poulet</a>
+            <a href="#"><i class="fas fa-arrow-right"></i> pâtes</a>
+            <a href="#"><i class="fas fa-arrow-right"></i> plus encore...</a>
+        </div>
+
+        <div class="box">
+            <h3>liens rapides</h3>
+            <a href="#home"> <i class="fas fa-arrow-right"></i> accueil</a>
+            <a href="#about"> <i class="fas fa-arrow-right"></i> a propos</a>
+            <a href="#popular"> <i class="fas fa-arrow-right"></i> populaire</a>
+            <a href="#menu"> <i class="fas fa-arrow-right"></i> menu</a>
+            <a href="#order"> <i class="fas fa-arrow-right"></i> commande</a>
+            <a href="#blogs"> <i class="fas fa-arrow-right"></i> blog</a>
+        </div>
+
+        <div class="box">
+            <h3>liens extra</h3>
+            <a href="#"> <i class="fas fa-arrow-right"></i> ma commande</a>
+            <a href="#"> <i class="fas fa-arrow-right"></i> mon compte</a>
+            <a href="#"> <i class="fas fa-arrow-right"></i> mes plats favoris</a>
+            <a href="#"> <i class="fas fa-arrow-right"></i> termes</a>
+            <a href="#"> <i class="fas fa-arrow-right"></i> privary policy</a>
+        </div>
+
+        <div class="box">
+            <h3>heures d'ouvertures</h3>
+            <p>lundi : 7:00h à 10:00h</p>
+            <p>mardi : 7:00h à 10:00h</p>
+            <p>mercredi : 7:00h to 10:00h</p>
+            <p>jeudi : 7:00ah à 10:00h</p>
+            <p>vendredi : 7:00h à 10:00h</p>
+            <p>samedi : 7:00h à 10:00h</p>
+            <p>dimanche fermés</p>
+        </div>
+
+    </div>
+
+    <div class="bottom">
+
+        <div class="share">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+            <a href="#" class="fab fa-pinterest"></a>
+        </div>
+
+        <div class="credit"> MAGIC FOOD PANAM crée par <span>Didier.B designer </span> | tous droits réservés! </div>
+        
+    </div>
+
+</section>
+<!-- FIN SECTION FOOTER -->
+
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>
