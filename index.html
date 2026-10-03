@@ -1,739 +1,755 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic-Food Panam</title>
+    <title>Magic Food Panam – Pizzas, burgers & gyozas livrés à Paris 15e</title>
+    <meta name="description" content="Magic Food Panam, restauration rapide à Paris 15e : pizzas, burgers, gyozas et menus préparés avec des produits frais et livrés en 30 minutes. Commandez en ligne.">
+    <meta name="theme-color" content="#27ae60">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Magic Food Panam – Restauration rapide à Paris">
+    <meta property="og:description" content="Pizzas, burgers, gyozas et menus livrés en 30 minutes dans le 15e arrondissement.">
+    <meta property="og:image" content="image/home-img.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥟</text></svg>">
+
+    <!-- Thème + classe js appliqués avant le premier rendu (évite le flash) -->
+    <script>
+    (function () {
+        var d = document.documentElement;
+        d.classList.add('js');
+        try {
+            var t = localStorage.getItem('mf-theme');
+            t = t ? JSON.parse(t) : null;
+            if (!t) { t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+            d.setAttribute('data-theme', t);
+        } catch (e) { /* stockage indisponible */ }
+    })();
+    </script>
+
+    <!-- polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Satisfy&display=swap" rel="stylesheet">
 
     <!-- font awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-    <!-- custom css style -->
+    <!-- feuille de style -->
     <link rel="stylesheet" href="css/style.css">
-
-
 </head>
 <body>
 
-    <!-- SECTION HEADER    -->
+<a href="#home" class="skip-link">Aller au contenu</a>
 
-<header class="header">
+<!-- ================= HEADER ================= -->
+<header class="header" id="header">
 
-    <a href="#" class="logo"> <i class="fas fa-utensils"></i> MAGIC FOOD PANAM </a>
-    
-    <nav class="navbar">
-        <a href="#home">accueil</a>
-        <a href="#about">à propos</a>
-        <a href="#popular">populaire</a>
-        <a href="#menu">menu</a>
-        <a href="#order">commande</a>
-        <a href="#blogs">blogs</a>
+    <a href="#home" class="logo" aria-label="Magic Food Panam, retour à l'accueil">
+        <i class="fas fa-utensils" aria-hidden="true"></i> Magic Food <span>Panam</span>
+    </a>
+
+    <nav class="navbar" id="navbar" aria-label="Navigation principale">
+        <a href="#home" class="active">Accueil</a>
+        <a href="#about">À propos</a>
+        <a href="#popular">Populaire</a>
+        <a href="#menu">Menu</a>
+        <a href="#order">Commande</a>
+        <a href="#blogs">Blog</a>
+        <button type="button" class="nav-theme" data-theme-toggle aria-pressed="false"><i class="fas fa-moon" aria-hidden="true"></i> <span>Mode sombre</span></button>
     </nav>
 
     <div class="icons">
-        <div id="menu-btn" class="fas fa-bars"></div>
-        <div id="search-btn" class="fas fa-search"></div>
-        <div id="cart-btn" class="fas fa-shopping-cart"></div>
-        <div id="login-btn" class="fas fa-user"></div>
+        <button type="button" id="theme-btn" class="icon-btn" data-theme-toggle aria-label="Activer le mode sombre" aria-pressed="false" title="Mode sombre / clair">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="search-btn" class="icon-btn" aria-label="Rechercher un plat" aria-expanded="false" aria-controls="search-panel" title="Rechercher">
+            <i class="fas fa-search" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="cart-btn" class="icon-btn" aria-label="Ouvrir le panier" aria-expanded="false" aria-controls="cart-drawer" title="Panier">
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <span class="badge" id="cart-count" hidden>0</span>
+        </button>
+        <button type="button" id="login-btn" class="icon-btn" aria-label="Se connecter" aria-expanded="false" aria-controls="login-modal" title="Mon compte">
+            <i class="fas fa-user" aria-hidden="true"></i>
+            <span class="dot" id="user-dot" hidden></span>
+        </button>
+        <button type="button" id="menu-btn" class="icon-btn" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navbar" title="Menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </button>
     </div>
-    
+
 </header>
-<!-- SECTION HEADER  -->
 
-<!-- SEARCH FORM -->
-<section class="search-form-container">
+<!-- ================= RECHERCHE ================= -->
+<section class="search-form-container" id="search-panel" aria-hidden="true" aria-label="Recherche de plats">
 
-    <form action="">
-        <input type="search" name="" placeholder="search here..." id="search-box">
-        <label for="search-box" class="fas fa-search"></label>
+    <form id="search-form" role="search" autocomplete="off">
+        <label for="search-box" class="sr-only">Rechercher un plat</label>
+        <input type="search" id="search-box" name="q" placeholder="Rechercher un plat : pizza, burger, gyozas…">
+        <button type="submit" aria-label="Lancer la recherche"><i class="fas fa-search" aria-hidden="true"></i></button>
     </form>
 
+    <div class="search-results" id="search-results" aria-live="polite"></div>
+
 </section>
-<!-- FIN SEARCH FORM -->
 
+<!-- ================= PANIER (tiroir latéral) ================= -->
+<aside class="shopping-cart-container" id="cart-drawer" aria-hidden="true" aria-label="Votre panier">
 
-<!-- SECTION SHOPPING CART  -->
-
-<section class="shopping-cart-container">
+    <div class="cart-header">
+        <h3 class="title"><i class="fas fa-shopping-basket" aria-hidden="true"></i> Votre panier <span id="cart-items-label">(0 article)</span></h3>
+        <button type="button" class="close-btn" data-close aria-label="Fermer le panier"><i class="fas fa-times" aria-hidden="true"></i></button>
+    </div>
 
     <div class="products-container">
- 
-        <h3 class="title">vos produits</h3>
-
-        <div class="box-container">
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-1.png" alt="">
-                <div class="content">
-                    <h3>plat délicieux</h3>
-                    <span> quantité : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> €40.00 </span>
-                </div>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-2.png" alt="">
-                <div class="content">
-                    <h3>plat délicieux</h3>
-                    <span> quantité : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> €40.00 </span>
-                </div>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-3.png" alt="">
-                <div class="content">
-                    <h3>plat délicieux</h3>
-                    <span> quantité : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> €40.00 </span>
-                </div>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-4.png" alt="">
-                <div class="content">
-                    <h3>plat délicieux</h3>
-                    <span> quantité : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> €40.00 </span>
-                </div>
-            </div>
-
-            <div class="box">
-                <i class="fas fa-times"></i>
-                <img src="image/menu-5.png" alt="">
-                <div class="content">
-                    <h3>plat délicieux</h3>
-                    <span> quantité : </span>
-                    <input type="number" name="" value="1" id="">
-                    <br>
-                    <span> price : </span>
-                    <span class="price"> €40.00 </span>
-                </div>
-            </div>
-
+        <div class="box-container" id="cart-items"></div>
+        <div class="cart-empty" id="cart-empty">
+            <i class="fas fa-basket-shopping" aria-hidden="true"></i>
+            <p>Votre panier est vide.</p>
+            <a href="#popular" class="btn" data-close>Découvrir nos plats</a>
         </div>
-
     </div>
 
     <div class="cart-total">
-
-        <h3 class="title"> total panier </h3>
-
-        <div class="box">
-
-            <h3 class="subtotal"> sous-total : <span>€200</span> </h3>
-            <h3 class="total"> total : <span>€200</span> </h3>
-
-            <a href="#" class="btn">procèder à la commande</a>
-
+        <div class="free-delivery" id="free-delivery">
+            <p>Plus que 25,00 € pour la livraison offerte</p>
+            <div class="bar"><span></span></div>
         </div>
-
+        <div class="box">
+            <p class="subtotal">Sous-total <span id="cart-subtotal">0,00 €</span></p>
+            <p class="delivery">Livraison <span id="cart-delivery">2,90 €</span></p>
+            <p class="total">Total <span id="cart-total">0,00 €</span></p>
+            <button type="button" class="btn" id="checkout-btn" disabled><i class="fas fa-check" aria-hidden="true"></i> Procéder à la commande</button>
+            <button type="button" class="btn btn-outline" id="clear-cart-btn" hidden><i class="fas fa-trash-can" aria-hidden="true"></i> Vider le panier</button>
+        </div>
     </div>
 
-</section>    
-    <!-- SECTION SHOPPING CART -->
+</aside>
 
-<!-- LOGIN FORM  -->
-<div class="login-form-container">
+<!-- ================= CONNEXION (modale) ================= -->
+<div class="login-form-container" id="login-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="login-title">
 
-    <form action="">
-        <h3>formulaire de connection</h3>
-        <input type="email" name="" placeholder="entrez votre email" id="" class="box">
-        <input type="password" name="" placeholder="entrez votre mot de passe" id="" class="box">
-        <div class="remember">
-            <input type="checkbox" name="" id="remember-me">
-            <label for="remember-me">se souvenir</label>
+    <form id="login-form" novalidate>
+        <button type="button" class="close-btn" data-close aria-label="Fermer"><i class="fas fa-times" aria-hidden="true"></i></button>
+        <h3 id="login-title">Connexion</h3>
+        <p class="lead">Retrouvez vos commandes et vos plats favoris.</p>
+
+        <div class="field" id="name-field" hidden>
+            <label for="login-name" class="sr-only">Votre nom</label>
+            <input type="text" id="login-name" name="name" placeholder="Votre nom" class="box" autocomplete="name" minlength="2" disabled required>
         </div>
-        <input type="submit" value="login now" class="btn">
-        <p>vous avez oublié votre mot de passe? <a href="#">cliquer ici</a></p>
-        <p>vous n'avez pas de compte? <a href="#">créer un compte</a></p>
+        <div class="field">
+            <label for="login-email" class="sr-only">Votre email</label>
+            <input type="email" id="login-email" name="email" placeholder="Entrez votre email" class="box" autocomplete="email" required>
+        </div>
+        <div class="field">
+            <label for="login-password" class="sr-only">Votre mot de passe</label>
+            <input type="password" id="login-password" name="password" placeholder="Entrez votre mot de passe" class="box" autocomplete="current-password" required>
+        </div>
+        <div class="remember">
+            <input type="checkbox" name="remember" id="remember-me">
+            <label for="remember-me">Se souvenir de moi</label>
+        </div>
+        <input type="submit" value="Se connecter" class="btn" id="login-submit">
+        <p>Vous avez oublié votre mot de passe ? <a href="#" id="forgot-link">Cliquez ici</a></p>
+        <p id="signup-text">Vous n'avez pas de compte ? <a href="#" id="toggle-signup">Créer un compte</a></p>
     </form>
 
-</div>
-<!-- FIN LOGIN FORM -->
+    <div class="logged-in" id="logged-in" hidden>
+        <button type="button" class="close-btn" data-close aria-label="Fermer"><i class="fas fa-times" aria-hidden="true"></i></button>
+        <div class="avatar"><i class="fas fa-user-check" aria-hidden="true"></i></div>
+        <h3>Bonjour <span id="user-name">gourmet</span> !</h3>
+        <p>Connecté avec <strong id="user-email"></strong></p>
+        <a href="#order" class="btn" data-close><i class="fas fa-receipt" aria-hidden="true"></i> Passer une commande</a>
+        <button type="button" class="btn btn-outline" id="logout-btn"><i class="fas fa-right-from-bracket" aria-hidden="true"></i> Se déconnecter</button>
+    </div>
 
-<!-- HOME SECTION  -->
+</div>
+
+<div class="overlay-backdrop" id="backdrop"></div>
+
+<main>
+
+<!-- ================= ACCUEIL ================= -->
 <section class="home" id="home">
 
     <div class="content">
-        <span>bienvenue aux gourmets</span>
-        <h3>différentes épices pour tout les goûts 😋</h3>
-        <p>Laissez-vous tenter par nos nouveaux plats originaux</p>
-        <a href="#" class="btn">commander</a>
+        <span class="tagline"><i class="fas fa-fire" aria-hidden="true"></i> Bienvenue aux gourmets</span>
+        <h1>Différentes épices pour <em>tous les goûts</em> 😋</h1>
+        <p>Laissez-vous tenter par nos nouveaux plats originaux, préparés chaque jour avec des ingrédients frais et livrés chez vous en moins de 30 minutes.</p>
+        <div class="actions">
+            <a href="#menu" class="btn">Commander <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            <a href="#popular" class="btn btn-outline">Voir les plats populaires</a>
+        </div>
+        <ul class="stats" aria-label="Chiffres clés">
+            <li><strong>30 min</strong><span>livraison</span></li>
+            <li><strong>4,8/5</strong><span>avis clients</span></li>
+            <li><strong>+50</strong><span>plats au menu</span></li>
+        </ul>
     </div>
 
     <div class="image">
-        <img src="image/home-img.png" alt="" class="home-img">
-        <img src="image/home-parallax-img.png" alt="" class="home-parallax-img">
+        <img src="image/home-img.png" alt="Assiette de gyozas croustillants avec sauce soja" class="home-img" width="899" height="649" fetchpriority="high">
+        <img src="image/home-parallax-img.png" alt="" class="home-parallax-img" aria-hidden="true">
+        <div class="floating-card card-1" aria-hidden="true">
+            <i class="fas fa-motorcycle"></i>
+            <div><strong>Livraison rapide</strong><span>En 30 min chrono</span></div>
+        </div>
+        <div class="floating-card card-2" aria-hidden="true">
+            <i class="fas fa-leaf"></i>
+            <div><strong>Produits frais</strong><span>Préparés du jour</span></div>
+        </div>
     </div>
 
 </section>
-<!-- HOME SECTION-->
 
-<!-- SECITON CATEGORY  -->
-<section class="category">
+<!-- ================= CATÉGORIES ================= -->
+<section class="category" id="category" aria-label="Catégories de plats">
 
-    <a href="#" class="box">
-        <img src="image/cat-1.png" alt="">
-        <h3>combo</h3>
+    <a href="#popular" class="box" data-category="combo" data-reveal>
+        <img src="image/cat-1.png" alt="" loading="lazy">
+        <h3>Combo</h3>
     </a>
 
-    <a href="#" class="box">
-        <img src="image/cat-2.png" alt="">
-        <h3>pizza</h3>
+    <a href="#popular" class="box" data-category="pizza" data-reveal>
+        <img src="image/cat-2.png" alt="" loading="lazy">
+        <h3>Pizza</h3>
     </a>
 
-    <a href="#" class="box">
-        <img src="image/cat-3.png" alt="">
-        <h3>burger</h3>
+    <a href="#popular" class="box" data-category="burger" data-reveal>
+        <img src="image/cat-3.png" alt="" loading="lazy">
+        <h3>Burger</h3>
     </a>
 
-    <a href="#" class="box">
-        <img src="image/cat-4.png" alt="">
-        <h3>poulet</h3>
+    <a href="#popular" class="box" data-category="poulet" data-reveal>
+        <img src="image/cat-4.png" alt="" loading="lazy">
+        <h3>Poulet</h3>
     </a>
 
-    <a href="#" class="box">
-        <img src="image/cat-5.png" alt="">
-        <h3>dîner</h3>
+    <a href="#popular" class="box" data-category="dîner" data-reveal>
+        <img src="image/cat-5.png" alt="" loading="lazy">
+        <h3>Dîner</h3>
     </a>
 
-    <a href="#" class="box">
-        <img src="image/cat-6.png" alt="">
-        <h3>café</h3>
+    <a href="#popular" class="box" data-category="café" data-reveal>
+        <img src="image/cat-6.png" alt="" loading="lazy">
+        <h3>Café</h3>
     </a>
 
 </section>
-<!-- FIN SECTION CATEGORY -->
 
-<!-- SECTION ABOUT  -->
+<!-- ================= À PROPOS ================= -->
 <section class="about" id="about">
 
-    <div class="image">
-        <img src="image/about-img.png" alt="">
+    <div class="image reveal">
+        <img src="image/about-img.png" alt="Plateau de gyozas vu du dessus avec sauce et herbes fraîches" loading="lazy" width="1035" height="767">
     </div>
 
-    <div class="content">
-        <span>pourquoi nous choisir?</span>
-        <h3 class="title">qu'est ce qui fait que nos plats soient si délicieux!</h3>
-        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos ut explicabo, numquam iusto est a ipsum assumenda tempore esse corporis?</p> -->
-        <a href="#" class="btn">en savoir plus</a>
-        <div class="icons-container">
+    <div class="content reveal">
+        <span>Pourquoi nous choisir ?</span>
+        <h2 class="title">Qu'est-ce qui rend nos plats si délicieux ?</h2>
+        <p>Chez Magic Food Panam, chaque recette est préparée à la commande par nos cuisiniers, avec des produits sélectionnés chaque matin chez nos producteurs partenaires. Pâte à pizza maturée 48 h, viande française, légumes de saison : on ne triche pas sur le goût.</p>
+        <a href="#popular" class="btn">Découvrir la carte</a>
+        <div class="icons-container" data-reveal-children>
             <div class="icons">
-                <img src="image/serv-1.png" alt="">
-                <h3>livraison rapide</h3>
-            </div>  
+                <img src="image/serv-1.png" alt="" loading="lazy">
+                <h3>Livraison rapide</h3>
+            </div>
             <div class="icons">
-                <img src="image/serv-2.png" alt="">
-                <h3>ingrédients frais</h3>
-            </div>   
+                <img src="image/serv-2.png" alt="" loading="lazy">
+                <h3>Ingrédients frais</h3>
+            </div>
             <div class="icons">
-                <img src="image/serv-3.png" alt="">
-                <h3>excellente qualité</h3>
-            </div>  
+                <img src="image/serv-3.png" alt="" loading="lazy">
+                <h3>Excellente qualité</h3>
+            </div>
             <div class="icons">
-                <img src="image/serv-4.png" alt="">
-                <h3>24/7 contact</h3>
-            </div>           
+                <img src="image/serv-4.png" alt="" loading="lazy">
+                <h3>Contact 7j/7</h3>
+            </div>
         </div>
     </div>
 
 </section>
-<!-- FIN SECTINO ABOUT -->
 
-<!-- POPULAR SECTION  -->
+<!-- ================= POPULAIRE ================= -->
 <section class="popular" id="popular">
 
-    <div class="heading">
-        <span>nourriture populaire</span>
-        <h3>nos plats spéciaux</h3>
+    <div class="heading reveal">
+        <span>Nourriture populaire</span>
+        <h2>Nos plats spéciaux</h2>
     </div>
 
-    <div class="box-container">
+    <div class="filter-bar reveal" id="filter-bar" role="group" aria-label="Filtrer les plats">
+        <button type="button" class="chip active" data-filter="all" aria-pressed="true">Tous</button>
+        <button type="button" class="chip" data-filter="pizza" aria-pressed="false">Pizza</button>
+        <button type="button" class="chip" data-filter="burger" aria-pressed="false">Burger</button>
+        <button type="button" class="chip" data-filter="poulet" aria-pressed="false">Poulet</button>
+        <button type="button" class="chip" data-filter="combo" aria-pressed="false">Combo</button>
+        <button type="button" class="chip" data-filter="dîner" aria-pressed="false">Dîner</button>
+        <button type="button" class="chip" data-filter="café" aria-pressed="false">Café</button>
+        <button type="button" class="chip chip-fav" data-filter="favorites" aria-pressed="false"><i class="fas fa-heart" aria-hidden="true"></i> Favoris</button>
+    </div>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <div class="image">
-                <img src="image/food-1.png" alt="">
-            </div>
-            <div class="content">
-                <h3>plat délicieux</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span> (50) </span>
-                </div>
-                <div class="price">€40.00 <span>€50.00</span></div>
-                <a href="#" class="btn">ajouter au panier</a>
-            </div>
-        </div>
+    <div class="box-container product-grid" data-reveal-children>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <div class="image">
-                <img src="image/food-2.png" alt="">
-            </div>
+        <article class="box product" data-id="food-1" data-name="Gyozas croustillants" data-price="9.90" data-category="dîner poulet">
+            <button type="button" class="fav-btn" aria-label="Ajouter Gyozas croustillants aux favoris" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>
+            <span class="tag">-23%</span>
+            <div class="image"><img src="image/food-1.png" alt="Gyozas croustillants avec sauce soja" loading="lazy" width="270" height="217"></div>
             <div class="content">
-                <h3>plat délicieux</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span> (50) </span>
+                <h3>Gyozas croustillants</h3>
+                <div class="stars" aria-label="Note 4,5 sur 5, 128 avis">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    <span>(128)</span>
                 </div>
-                <div class="price">€40.00 <span>€50.00</span></div>
-                <a href="#" class="btn">ajouter au panier</a>
+                <div class="price">9,90 € <span>12,90 €</span></div>
+                <button type="button" class="btn add-to-cart"><i class="fas fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</button>
             </div>
-        </div>
+        </article>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <div class="image">
-                <img src="image/food-3.png" alt="">
-            </div>
+        <article class="box product" data-id="food-2" data-name="Burger champignons cheddar" data-price="12.50" data-category="burger combo">
+            <button type="button" class="fav-btn" aria-label="Ajouter Burger champignons cheddar aux favoris" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>
+            <span class="tag">-14%</span>
+            <div class="image"><img src="image/food-2.png" alt="Burger aux champignons et cheddar fondant" loading="lazy" width="270" height="217"></div>
             <div class="content">
-                <h3>plat délicieux</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span> (50) </span>
+                <h3>Burger champignons cheddar</h3>
+                <div class="stars" aria-label="Note 5 sur 5, 96 avis">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <span>(96)</span>
                 </div>
-                <div class="price">€40.00 <span>€50.00</span></div>
-                <a href="#" class="btn">ajouter au panier</a>
+                <div class="price">12,50 € <span>14,50 €</span></div>
+                <button type="button" class="btn add-to-cart"><i class="fas fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</button>
             </div>
-        </div>
+        </article>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <div class="image">
-                <img src="image/food-4.png" alt="">
-            </div>
+        <article class="box product" data-id="food-3" data-name="Pizza poulet maïs" data-price="13.90" data-category="pizza poulet">
+            <button type="button" class="fav-btn" aria-label="Ajouter Pizza poulet maïs aux favoris" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>
+            <span class="tag">-13%</span>
+            <div class="image"><img src="image/food-3.png" alt="Pizza au poulet, maïs et basilic" loading="lazy" width="270" height="217"></div>
             <div class="content">
-                <h3>plat délicieux</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span> (50) </span>
+                <h3>Pizza poulet maïs</h3>
+                <div class="stars" aria-label="Note 4,5 sur 5, 74 avis">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    <span>(74)</span>
                 </div>
-                <div class="price">€40.00 <span>€50.00</span></div>
-                <a href="#" class="btn">ajouter au panier</a>
+                <div class="price">13,90 € <span>15,90 €</span></div>
+                <button type="button" class="btn add-to-cart"><i class="fas fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</button>
             </div>
-        </div>
+        </article>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <div class="image">
-                <img src="image/food-5.png" alt="">
-            </div>
+        <article class="box product" data-id="food-4" data-name="Black burger" data-price="13.50" data-category="burger">
+            <button type="button" class="fav-btn" aria-label="Ajouter Black burger aux favoris" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>
+            <span class="tag new">Nouveau</span>
+            <div class="image"><img src="image/food-4.png" alt="Black burger au pain noir, steak et salade" loading="lazy" width="270" height="217"></div>
             <div class="content">
-                <h3>plat délicieux</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span> (50) </span>
+                <h3>Black burger</h3>
+                <div class="stars" aria-label="Note 4 sur 5, 41 avis">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                    <span>(41)</span>
                 </div>
-                <div class="price">€40.00 <span>€50.00</span></div>
-                <a href="#" class="btn">ajouter au panier</a>
+                <div class="price">13,50 € <span>16,00 €</span></div>
+                <button type="button" class="btn add-to-cart"><i class="fas fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</button>
             </div>
-        </div>
+        </article>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <div class="image">
-                <img src="image/food-6.png" alt="">
-            </div>
+        <article class="box product" data-id="food-5" data-name="Pizza funghi mozzarella" data-price="12.90" data-category="pizza">
+            <button type="button" class="fav-btn" aria-label="Ajouter Pizza funghi mozzarella aux favoris" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>
+            <span class="tag">-13%</span>
+            <div class="image"><img src="image/food-5.png" alt="Pizza aux champignons, mozzarella et basilic" loading="lazy" width="270" height="217"></div>
             <div class="content">
-                <h3>plat délicieux</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span> (50) </span>
+                <h3>Pizza funghi mozzarella</h3>
+                <div class="stars" aria-label="Note 5 sur 5, 152 avis">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <span>(152)</span>
                 </div>
-                <div class="price">€40.00 <span>€50.00</span></div>
-                <a href="#" class="btn">ajouter au panier</a>
+                <div class="price">12,90 € <span>14,90 €</span></div>
+                <button type="button" class="btn add-to-cart"><i class="fas fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</button>
             </div>
-        </div>
+        </article>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <div class="image">
-                <img src="image/food-7.png" alt="">
-            </div>
+        <article class="box product" data-id="food-6" data-name="Pizza végétarienne" data-price="11.90" data-category="pizza">
+            <button type="button" class="fav-btn" aria-label="Ajouter Pizza végétarienne aux favoris" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>
+            <span class="tag veggie">Végé</span>
+            <div class="image"><img src="image/food-6.png" alt="Pizza végétarienne aux tomates, poivrons, olives et feta" loading="lazy" width="270" height="217"></div>
             <div class="content">
-                <h3>plat délicieux</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span> (50) </span>
+                <h3>Pizza végétarienne</h3>
+                <div class="stars" aria-label="Note 4,5 sur 5, 63 avis">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    <span>(63)</span>
                 </div>
-                <div class="price">€40.00 <span>€50.00</span></div>
-                <a href="#" class="btn">ajouter au panier</a>
+                <div class="price">11,90 € <span>13,90 €</span></div>
+                <button type="button" class="btn add-to-cart"><i class="fas fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</button>
             </div>
-        </div>
+        </article>
 
-        <div class="box">
-            <a href="#" class="fas fa-heart"></a>
-            <div class="image">
-                <img src="image/food-8.png" alt="">
-            </div>
+        <article class="box product" data-id="food-7" data-name="Double cheeseburger" data-price="11.50" data-category="burger combo">
+            <button type="button" class="fav-btn" aria-label="Ajouter Double cheeseburger aux favoris" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>
+            <span class="tag">-15%</span>
+            <div class="image"><img src="image/food-7.png" alt="Double cheeseburger avec tomate et salade" loading="lazy" width="270" height="217"></div>
             <div class="content">
-                <h3>plat délicieux</h3>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star-half-alt"></i>
-                    <span> (50) </span>
+                <h3>Double cheeseburger</h3>
+                <div class="stars" aria-label="Note 5 sur 5, 210 avis">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <span>(210)</span>
                 </div>
-                <div class="price">€40.00 <span>€50.00</span></div>
-                <a href="#" class="btn">ajouter au panier</a>
+                <div class="price">11,50 € <span>13,50 €</span></div>
+                <button type="button" class="btn add-to-cart"><i class="fas fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</button>
             </div>
-        </div>
+        </article>
+
+        <article class="box product" data-id="food-8" data-name="Pizza kebab" data-price="14.50" data-category="pizza">
+            <button type="button" class="fav-btn" aria-label="Ajouter Pizza kebab aux favoris" aria-pressed="false"><i class="far fa-heart" aria-hidden="true"></i></button>
+            <span class="tag">-12%</span>
+            <div class="image"><img src="image/food-8.png" alt="Pizza kebab aux olives et poivrons" loading="lazy" width="270" height="217"></div>
+            <div class="content">
+                <h3>Pizza kebab</h3>
+                <div class="stars" aria-label="Note 4,5 sur 5, 88 avis">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    <span>(88)</span>
+                </div>
+                <div class="price">14,50 € <span>16,50 €</span></div>
+                <button type="button" class="btn add-to-cart"><i class="fas fa-cart-plus" aria-hidden="true"></i> Ajouter au panier</button>
+            </div>
+        </article>
 
     </div>
+
+    <p class="empty-state" hidden>Aucun plat dans cette catégorie pour le moment.</p>
 
 </section>
-<!-- FIN POPULAR SECTION -->
 
-<!-- SECITON BANNER  -->
-<section class="banner">
+<!-- ================= BANNIÈRES ================= -->
+<section class="banner" aria-label="Offres du moment">
 
-    <div class="row-banner">
+    <div class="row-banner reveal">
         <div class="content">
-            <span>double cheese</span>
-            <h3>burger</h3>
-            <p>Coca + Frites</p>
-            <a href="#" class="btn">commander</a>
+            <span>Double cheese</span>
+            <h3>Burger</h3>
+            <p>Coca + Frites offerts avec le menu</p>
+            <button type="button" class="btn" data-add="food-7"><i class="fas fa-cart-plus" aria-hidden="true"></i> Commander</button>
         </div>
     </div>
 
-    <div class="grid-banner">
+    <div class="grid-banner" data-reveal-children>
         <div class="grid">
-            <img src="image/banner-1.png" alt="">
+            <img src="image/banner-1.png" alt="Barbecue avec viandes grillées" loading="lazy">
             <div class="content">
-                <span>offre spéciale</span>
-                <h3>jusqu’à 50% de réduction</h3>
-                <a href="#" class="btn">commander</a>
+                <span>Offre spéciale</span>
+                <h3>Jusqu'à 50 % de réduction</h3>
+                <a href="#menu" class="btn">Commander</a>
             </div>
         </div>
         <div class="grid">
-            <img src="image/banner-2.png" alt="">
+            <img src="image/banner-2.png" alt="Portion de frites avec sauces" loading="lazy">
             <div class="content center">
-                <span>offre spéciale</span>
-                <h3>jusqu’à 25% de réduction</h3>
-                <a href="#" class="btn">commander</a>
+                <span>Offre spéciale</span>
+                <h3>Jusqu'à 25 % de réduction</h3>
+                <a href="#menu" class="btn">Commander</a>
             </div>
         </div>
-        <div class="grid">        
-            <img src="image/banner-3.png" alt="">
+        <div class="grid">
+            <img src="image/banner-3.png" alt="Gyozas tenus avec des baguettes" loading="lazy">
             <div class="content">
-                <span>offre limitée</span>
-                <h3>100% cashback</h3>
-                <a href="#" class="btn">commander</a>
+                <span>Offre limitée</span>
+                <h3>Un dessert offert</h3>
+                <a href="#menu" class="btn">Commander</a>
             </div>
         </div>
     </div>
 
 </section>
-<!-- FIN SECITON BANNER -->
 
-<!-- SECITON MENU  -->
+<!-- ================= MENU ================= -->
 <section class="menu" id="menu">
 
-    <div class="heading">
-        <span>nos menu</span>
-        <h3>nos meilleurs plats</h3>
+    <div class="heading reveal">
+        <span>Nos menus</span>
+        <h2>Nos meilleurs plats</h2>
     </div>
 
-    <div class="box-container">
+    <div class="box-container product-grid" data-reveal-children>
 
-        <a href="#" class="box">
-            <img src="image/menu-1.png" alt="">
+        <article class="box product" data-id="menu-1" data-name="Burger de poulet croustillant" data-price="9.90" data-category="burger poulet">
+            <img src="image/menu-1.png" alt="Burger de poulet croustillant" loading="lazy" width="150" height="150">
             <div class="content">
-                <h3>plat déclicieux</h3>
-                <div class="price">€40.00</div>
+                <h3>Burger de poulet croustillant</h3>
+                <p>Filet de poulet pané, salade, tomate, sauce maison</p>
+                <div class="price">9,90 €</div>
             </div>
-        </a>
+            <button type="button" class="add-to-cart icon-add" aria-label="Ajouter Burger de poulet croustillant au panier"><i class="fas fa-plus" aria-hidden="true"></i></button>
+        </article>
 
-        <a href="#" class="box">
-            <img src="image/menu-2.png" alt="">
+        <article class="box product" data-id="menu-2" data-name="Pizza méditerranéenne" data-price="12.90" data-category="pizza">
+            <img src="image/menu-2.png" alt="Pizza méditerranéenne" loading="lazy" width="150" height="150">
             <div class="content">
-                <h3>plat déclicieux</h3>
-                <div class="price">€40.00</div>
+                <h3>Pizza méditerranéenne</h3>
+                <p>Tomates, olives noires, feta, brocolis, origan</p>
+                <div class="price">12,90 €</div>
             </div>
-        </a>
+            <button type="button" class="add-to-cart icon-add" aria-label="Ajouter Pizza méditerranéenne au panier"><i class="fas fa-plus" aria-hidden="true"></i></button>
+        </article>
 
-        <a href="#" class="box">
-            <img src="image/menu-3.png" alt="">
+        <article class="box product" data-id="menu-3" data-name="Panini grillé" data-price="6.50" data-category="dîner">
+            <img src="image/menu-3.png" alt="Panini grillé" loading="lazy" width="150" height="150">
             <div class="content">
-                <h3>plat déclicieux</h3>
-                <div class="price">€40.00</div>
+                <h3>Panini grillé</h3>
+                <p>Mozzarella, tomates séchées, pesto, pain croustillant</p>
+                <div class="price">6,50 €</div>
             </div>
-        </a>
+            <button type="button" class="add-to-cart icon-add" aria-label="Ajouter Panini grillé au panier"><i class="fas fa-plus" aria-hidden="true"></i></button>
+        </article>
 
-        <a href="#" class="box">
-            <img src="image/menu-4.png" alt="">
+        <article class="box product" data-id="menu-4" data-name="Sandwich jambon-fromage" data-price="5.90" data-category="dîner">
+            <img src="image/menu-4.png" alt="Sandwich jambon-fromage" loading="lazy" width="150" height="150">
             <div class="content">
-                <h3>plat déclicieux</h3>
-                <div class="price">€40.00</div>
+                <h3>Sandwich jambon-fromage</h3>
+                <p>Baguette tradition, jambon de Paris, emmental, salade</p>
+                <div class="price">5,90 €</div>
             </div>
-        </a>
+            <button type="button" class="add-to-cart icon-add" aria-label="Ajouter Sandwich jambon-fromage au panier"><i class="fas fa-plus" aria-hidden="true"></i></button>
+        </article>
 
-        <a href="#" class="box">
-            <img src="image/menu-5.png" alt="">
+        <article class="box product" data-id="menu-5" data-name="Frites maison" data-price="3.50" data-category="combo">
+            <img src="image/menu-5.png" alt="Frites maison" loading="lazy" width="150" height="150">
             <div class="content">
-                <h3>plat déclicieux</h3>
-                <div class="price">€40.00</div>
+                <h3>Frites maison</h3>
+                <p>Pommes de terre fraîches, double cuisson, fleur de sel</p>
+                <div class="price">3,50 €</div>
             </div>
-        </a>
+            <button type="button" class="add-to-cart icon-add" aria-label="Ajouter Frites maison au panier"><i class="fas fa-plus" aria-hidden="true"></i></button>
+        </article>
 
-        <a href="#" class="box">
-            <img src="image/menu-6.png" alt="">
+        <article class="box product" data-id="menu-6" data-name="Pizza 4 fromages" data-price="12.50" data-category="pizza">
+            <img src="image/menu-6.png" alt="Pizza quatre fromages" loading="lazy" width="150" height="150">
             <div class="content">
-                <h3>plat déclicieux</h3>
-                <div class="price">€40.00</div>
+                <h3>Pizza 4 fromages</h3>
+                <p>Mozzarella, gorgonzola, chèvre, emmental</p>
+                <div class="price">12,50 €</div>
             </div>
-        </a>
+            <button type="button" class="add-to-cart icon-add" aria-label="Ajouter Pizza 4 fromages au panier"><i class="fas fa-plus" aria-hidden="true"></i></button>
+        </article>
 
     </div>
+
+    <p class="empty-state" hidden>Aucun plat dans cette catégorie pour le moment.</p>
 
 </section>
-<!-- FIN SECTION MENU -->
 
-
-<!-- SECITON ORDER  -->
-
+<!-- ================= COMMANDE ================= -->
 <section class="order" id="order">
 
-    <div class="heading">
-        <span>commander</span>
-        <h3>livraison éclaire</h3>
+    <div class="heading reveal">
+        <span>Commander</span>
+        <h2>Livraison éclair</h2>
     </div>
 
-    <div class="icons-container">
-
+    <div class="icons-container" data-reveal-children>
         <div class="icons">
-            <img src="image/icon-1.png" alt="">
-            <h3>7:00h à 22h30h</h3>
+            <img src="image/icon-1.png" alt="" loading="lazy">
+            <h3>7h00 – 22h30</h3>
+            <p>du lundi au samedi</p>
         </div>
-
         <div class="icons">
-            <img src="image/icon-2.png" alt="">
-            <h3>01-36-45-96-85</h3>
+            <img src="image/icon-2.png" alt="" loading="lazy">
+            <h3><a href="tel:+33136459685">01 36 45 96 85</a></h3>
+            <p>appel non surtaxé</p>
         </div>
-
         <div class="icons">
-            <img src="image/icon-3.png" alt="">
-            <h3>Paris, France - 75015</h3>
+            <img src="image/icon-3.png" alt="" loading="lazy">
+            <h3>Paris 15e – 75015</h3>
+            <p>livraison dans tout le 15e</p>
         </div>
-
     </div>
 
-    <form action="">
+    <div class="order-success reveal" id="order-success" hidden role="status" aria-live="polite">
+        <i class="fas fa-circle-check" aria-hidden="true"></i>
+        <div>
+            <h3>Commande confirmée !</h3>
+            <p id="order-success-text"></p>
+        </div>
+        <button type="button" class="close-btn" id="order-success-close" aria-label="Fermer"><i class="fas fa-times" aria-hidden="true"></i></button>
+    </div>
+
+    <form id="order-form" class="reveal" novalidate>
 
         <div class="flex">
             <div class="inputBox">
-                <span>votre nom</span>
-                <input type="text" placeholder="nom du client" name="" id="">
+                <label for="o-name">Votre nom</label>
+                <input type="text" id="o-name" name="name" placeholder="Nom du client" autocomplete="name" minlength="2" required>
             </div>
             <div class="inputBox">
-                <span>votre numéro</span>
-                <input type="number" placeholder="numéro du client" name="" id="">
+                <label for="o-phone">Votre numéro</label>
+                <input type="tel" id="o-phone" name="phone" placeholder="06 12 34 56 78" autocomplete="tel" inputmode="tel" required>
             </div>
         </div>
 
         <div class="flex">
             <div class="inputBox">
-                <span>votre commande</span>
-                <input type="text" placeholder="plat que vous désirer" name="" id="">
+                <label for="o-items">Votre commande</label>
+                <textarea id="o-items" name="items" rows="4" placeholder="Ex : 2 × Pizza 4 fromages, 1 × Frites maison" required></textarea>
+                <small class="hint">Ajoutez des plats au panier : ils apparaissent ici automatiquement.</small>
             </div>
             <div class="inputBox">
-                <span>montant</span>
-                <input type="number" placeholder="numéro ou commande" name="" id="">
+                <label for="o-mode">Mode de réception</label>
+                <select id="o-mode" name="mode">
+                    <option value="livraison">Livraison à domicile</option>
+                    <option value="emporter">À emporter</option>
+                </select>
+                <label for="o-amount">Montant</label>
+                <input type="text" id="o-amount" name="amount" value="—" readonly aria-describedby="amount-hint">
+                <small class="hint" id="amount-hint">Calculé automatiquement depuis votre panier. Livraison offerte dès 25 €.</small>
             </div>
         </div>
 
         <div class="flex">
             <div class="inputBox">
-                <span>vos demandes spéciales</span>
-                <input type="text" placeholder="votre message" name="" id="">
+                <label for="o-notes">Vos demandes spéciales</label>
+                <input type="text" id="o-notes" name="notes" placeholder="Allergies, sans oignons, bien cuit…">
             </div>
             <div class="inputBox">
-                <span>heure de récupération</span>
-                <input type="datetime-local">
+                <label for="o-time">Heure de récupération</label>
+                <input type="datetime-local" id="o-time" name="time" required>
             </div>
         </div>
 
         <div class="flex">
             <div class="inputBox">
-                <textarea placeholder="votre adresse" id="" cols="30" rows="10"></textarea>
+                <label for="o-address">Votre adresse</label>
+                <textarea id="o-address" name="address" placeholder="Numéro, rue, code postal, étage, code d'accès…" autocomplete="street-address" required></textarea>
             </div>
             <div class="inputBox">
-                <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42013.846884514074!2d2.258697136571288!3d48.84170548671292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67014196e60f5%3A0x50b82c368941b30!2sParis%2015e%20Arrondissement%2C%2075015%20Paris!5e0!3m2!1sfr!2sfr!4v1652058725257!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" ></iframe>
+                <iframe class="map" title="Carte du 15e arrondissement de Paris" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d42013.846884514074!2d2.258697136571288!3d48.84170548671292!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e67014196e60f5%3A0x50b82c368941b30!2sParis%2015e%20Arrondissement%2C%2075015%20Paris!5e0!3m2!1sfr!2sfr!4v1652058725257!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
 
-        <input type="submit" value="commander" class="btn">
+        <button type="submit" class="btn btn-lg"><i class="fas fa-paper-plane" aria-hidden="true"></i> <span>Commander</span></button>
 
     </form>
 
 </section>
-<!-- FIN SECTION ORDER -->
 
-<!-- SECTINO BLOG  -->
+<!-- ================= BLOG ================= -->
 <section class="blogs" id="blogs">
 
-    <div class="heading">
-        <span>notre blog</span>
-        <h3>l'histoire du jour</h3>
+    <div class="heading reveal">
+        <span>Notre blog</span>
+        <h2>L'histoire du jour</h2>
     </div>
 
-    <div class="box-container">
+    <div class="box-container" data-reveal-children>
 
-        <div class="box">
+        <article class="box">
             <div class="image">
-                <h3> <i class="fas fa-calendar"></i> 10 mai 2022 </h3>
-                <img src="image/blog-1.jpg" alt="">
+                <h3><i class="fas fa-calendar" aria-hidden="true"></i> 10 mai 2022</h3>
+                <img src="image/blog-1.jpg" alt="Burger au pain brioché et cheddar fondant" loading="lazy">
             </div>
             <div class="content">
                 <div class="tags">
-                    <a href="#"> <i class="fas fa-tag"></i> plat / </a>
-                    <a href="#"> <i class="fas fa-tag"></i> burger / </a>
-                    <a href="#"> <i class="fas fa-tag"></i> pizza  </a>
+                    <a href="#" data-filter="burger"><i class="fas fa-tag" aria-hidden="true"></i> burger</a>
+                    <a href="#" data-filter="combo"><i class="fas fa-tag" aria-hidden="true"></i> combo</a>
                 </div>
-                <h3>Les secrets de nos plats...</h3>
-                <p>Découvrez des recettes de plats exceptionnels...</p>
-                <a href="#" class="btn">En savoir plus</a>
+                <h3>Les secrets de notre pain brioché</h3>
+                <p>Moelleux, doré, légèrement sucré : notre pain est pétri chaque matin dans notre fournil du 15e.</p>
+                <p class="more" hidden>Nous utilisons une farine T45 française, du beurre AOP et une fermentation lente de 12 heures. Résultat : un pain qui tient le jus du steak sans jamais devenir mou.</p>
+                <button type="button" class="btn btn-outline read-more">Lire la suite</button>
             </div>
-        </div>
+        </article>
 
-        <div class="box">
+        <article class="box">
             <div class="image">
-                <h3> <i class="fas fa-calendar"></i> 10 mai 2022 </h3>
-                <img src="image/blog-2.jpg" alt="">
+                <h3><i class="fas fa-calendar" aria-hidden="true"></i> 24 juin 2022</h3>
+                <img src="image/blog-2.jpg" alt="Wraps garnis de viande hachée et de légumes" loading="lazy">
             </div>
             <div class="content">
                 <div class="tags">
-                    <a href="#"> <i class="fas fa-tag"></i> plat / </a>
-                    <a href="#"> <i class="fas fa-tag"></i> burger / </a>
-                    <a href="#"> <i class="fas fa-tag"></i> pizza  </a>
+                    <a href="#" data-filter="dîner"><i class="fas fa-tag" aria-hidden="true"></i> dîner</a>
+                    <a href="#" data-filter="poulet"><i class="fas fa-tag" aria-hidden="true"></i> poulet</a>
                 </div>
-                <h3>Les secrets de nos plats...</h3>
-                <p>Découvrez des recettes de plats exceptionnels...</p>
-                <a href="#" class="btn">En savoir plus</a>
+                <h3>Nos wraps aux légumes de saison</h3>
+                <p>Chaque semaine, nous changeons la garniture de nos wraps selon les arrivages du marché.</p>
+                <p class="more" hidden>En ce moment : poivrons grillés, maïs doux, coriandre fraîche et une sauce yaourt-citron vert préparée maison. Disponible en version poulet ou végétarienne.</p>
+                <button type="button" class="btn btn-outline read-more">Lire la suite</button>
             </div>
-        </div>
+        </article>
 
-        <div class="box">
+        <article class="box">
             <div class="image">
-                <h3> <i class="fas fa-calendar"></i> 10 mai 2022 </h3>
-                <img src="image/blog-3.jpg" alt="">
+                <h3><i class="fas fa-calendar" aria-hidden="true"></i> 2 septembre 2022</h3>
+                <img src="image/blog-3.jpg" alt="Burger avec potatoes sur une planche en bois" loading="lazy">
             </div>
             <div class="content">
                 <div class="tags">
-                    <a href="#"> <i class="fas fa-tag"></i> plat / </a>
-                    <a href="#"> <i class="fas fa-tag"></i> burger / </a>
-                    <a href="#"> <i class="fas fa-tag"></i> pizza  </a>
+                    <a href="#" data-filter="burger"><i class="fas fa-tag" aria-hidden="true"></i> burger</a>
+                    <a href="#" data-filter="pizza"><i class="fas fa-tag" aria-hidden="true"></i> pizza</a>
                 </div>
-                <h3>Les secrets de nos plats...</h3>
-                <p>read more</p>
-                <a href="#" class="btn">En savoir plus</a>
+                <h3>Pourquoi nos frites sont différentes</h3>
+                <p>Double cuisson, pommes de terre fraîches et fleur de sel : la recette d'une frite parfaite.</p>
+                <p class="more" hidden>Nos pommes de terre sont épluchées et coupées sur place chaque matin, blanchies à 140 °C puis saisies à 180 °C au moment de la commande. Jamais surgelées.</p>
+                <button type="button" class="btn btn-outline read-more">Lire la suite</button>
             </div>
-        </div>
+        </article>
 
     </div>
 
 </section>
-<!-- FIN SECTION BLOG -->
 
-<!-- DSECTION FOOTER  -->
-<section class="footer">
+</main>
 
-    <div class="newsletter">
-        <h3>newsletter</h3>
-        <form action="">
-            <input type="email" name="" placeholder="entrez votre mail" id="">
-            <input type="submit" value="subscribe">
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+    <div class="newsletter reveal">
+        <h3>Newsletter</h3>
+        <p>Recevez nos offres et nouveautés directement dans votre boîte mail.</p>
+        <form id="newsletter-form" novalidate>
+            <div class="field">
+                <label for="newsletter-email" class="sr-only">Votre adresse e-mail</label>
+                <input type="email" id="newsletter-email" name="email" placeholder="Entrez votre e-mail" autocomplete="email" required>
+                <input type="submit" value="S'abonner">
+            </div>
         </form>
     </div>
 
-    <div class="box-container">
+    <div class="box-container" data-reveal-children>
 
         <div class="box">
-            <h3>nos menus</h3>
-            <a href="#"><i class="fas fa-arrow-right"></i> pizza</a>
-            <a href="#"><i class="fas fa-arrow-right"></i> burger</a>
-            <a href="#"><i class="fas fa-arrow-right"></i> poulet</a>
-            <a href="#"><i class="fas fa-arrow-right"></i> pâtes</a>
-            <a href="#"><i class="fas fa-arrow-right"></i> plus encore...</a>
+            <h3>Nos menus</h3>
+            <a href="#popular" data-filter="pizza"><i class="fas fa-arrow-right" aria-hidden="true"></i> Pizza</a>
+            <a href="#popular" data-filter="burger"><i class="fas fa-arrow-right" aria-hidden="true"></i> Burger</a>
+            <a href="#popular" data-filter="poulet"><i class="fas fa-arrow-right" aria-hidden="true"></i> Poulet</a>
+            <a href="#popular" data-filter="combo"><i class="fas fa-arrow-right" aria-hidden="true"></i> Combo</a>
+            <a href="#popular" data-filter="all"><i class="fas fa-arrow-right" aria-hidden="true"></i> Toute la carte</a>
         </div>
 
         <div class="box">
-            <h3>liens rapides</h3>
-            <a href="#home"> <i class="fas fa-arrow-right"></i> accueil</a>
-            <a href="#about"> <i class="fas fa-arrow-right"></i> a propos</a>
-            <a href="#popular"> <i class="fas fa-arrow-right"></i> populaire</a>
-            <a href="#menu"> <i class="fas fa-arrow-right"></i> menu</a>
-            <a href="#order"> <i class="fas fa-arrow-right"></i> commande</a>
-            <a href="#blogs"> <i class="fas fa-arrow-right"></i> blog</a>
+            <h3>Liens rapides</h3>
+            <a href="#home"><i class="fas fa-arrow-right" aria-hidden="true"></i> Accueil</a>
+            <a href="#about"><i class="fas fa-arrow-right" aria-hidden="true"></i> À propos</a>
+            <a href="#popular"><i class="fas fa-arrow-right" aria-hidden="true"></i> Populaire</a>
+            <a href="#menu"><i class="fas fa-arrow-right" aria-hidden="true"></i> Menu</a>
+            <a href="#order"><i class="fas fa-arrow-right" aria-hidden="true"></i> Commande</a>
+            <a href="#blogs"><i class="fas fa-arrow-right" aria-hidden="true"></i> Blog</a>
         </div>
 
         <div class="box">
-            <h3>liens extra</h3>
-            <a href="#"> <i class="fas fa-arrow-right"></i> ma commande</a>
-            <a href="#"> <i class="fas fa-arrow-right"></i> mon compte</a>
-            <a href="#"> <i class="fas fa-arrow-right"></i> mes plats favoris</a>
-            <a href="#"> <i class="fas fa-arrow-right"></i> termes</a>
-            <a href="#"> <i class="fas fa-arrow-right"></i> privary policy</a>
+            <h3>Liens extra</h3>
+            <a href="#order"><i class="fas fa-arrow-right" aria-hidden="true"></i> Ma commande</a>
+            <a href="#" data-open="login"><i class="fas fa-arrow-right" aria-hidden="true"></i> Mon compte</a>
+            <a href="#popular" data-filter="favorites"><i class="fas fa-arrow-right" aria-hidden="true"></i> Mes plats favoris</a>
+            <a href="#"><i class="fas fa-arrow-right" aria-hidden="true"></i> Conditions générales</a>
+            <a href="#"><i class="fas fa-arrow-right" aria-hidden="true"></i> Politique de confidentialité</a>
         </div>
 
         <div class="box">
-            <h3>heures d'ouvertures</h3>
-            <p>lundi : 7:00h à 10:00h</p>
-            <p>mardi : 7:00h à 10:00h</p>
-            <p>mercredi : 7:00h to 10:00h</p>
-            <p>jeudi : 7:00ah à 10:00h</p>
-            <p>vendredi : 7:00h à 10:00h</p>
-            <p>samedi : 7:00h à 10:00h</p>
-            <p>dimanche fermés</p>
+            <h3>Heures d'ouverture</h3>
+            <p><span>Lundi</span> 7h00 – 22h30</p>
+            <p><span>Mardi</span> 7h00 – 22h30</p>
+            <p><span>Mercredi</span> 7h00 – 22h30</p>
+            <p><span>Jeudi</span> 7h00 – 22h30</p>
+            <p><span>Vendredi</span> 7h00 – 22h30</p>
+            <p><span>Samedi</span> 7h00 – 22h30</p>
+            <p><span>Dimanche</span> <em>fermé</em></p>
         </div>
 
     </div>
@@ -741,22 +757,26 @@
     <div class="bottom">
 
         <div class="share">
-            <a href="#" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
-            <a href="#" class="fab fa-pinterest"></a>
+            <a href="#" class="fab fa-facebook-f" aria-label="Facebook"></a>
+            <a href="#" class="fab fa-twitter" aria-label="Twitter"></a>
+            <a href="#" class="fab fa-instagram" aria-label="Instagram"></a>
+            <a href="#" class="fab fa-linkedin" aria-label="LinkedIn"></a>
+            <a href="#" class="fab fa-pinterest" aria-label="Pinterest"></a>
         </div>
 
-        <div class="credit"> MAGIC FOOD PANAM crée par <span>Didier.B designer </span> | tous droits réservés! </div>
-        
+        <div class="credit">© <span id="year">2022</span> Magic Food Panam – créé par <span>Didier.B designer</span> | tous droits réservés</div>
+
     </div>
 
-</section>
-<!-- FIN SECTION FOOTER -->
+</footer>
 
+<!-- ================= ÉLÉMENTS FLOTTANTS ================= -->
+<button type="button" class="back-to-top" id="back-to-top" aria-label="Retour en haut de page">
+    <i class="fas fa-chevron-up" aria-hidden="true"></i>
+</button>
 
+<div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="false"></div>
 
-    <script src="js/script.js"></script>
+<script src="js/script.js" defer></script>
 </body>
 </html>

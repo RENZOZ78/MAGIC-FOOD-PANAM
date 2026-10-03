@@ -1,0 +1,10 @@
+# Sass
+.sass-cache/
+*.css.map
+
+# Dépendances / outils
+node_modules/
+
+# Système
+.DS_Store
+Thumbs.db
